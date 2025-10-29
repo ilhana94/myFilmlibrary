@@ -1,0 +1,9 @@
+# Ignoriši sistemske foldere korisnika
+Desktop/
+Documents/
+Downloads/
+Music/
+Pictures/
+Videos/
+.vscode/
+*.log
