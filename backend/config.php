@@ -3,7 +3,7 @@ class Database {
     private static $host = 'localhost';
     private static $dbName = 'movie_app';
     private static $username = 'root';
-    private static $password = ''; // nema lozinke
+    private static $password = '';
     private static $connection = null;
 
     public static function connect() {

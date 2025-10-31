@@ -26,7 +26,7 @@ class MovieCategoriesDao extends BaseDao {
         return $stmt->fetchAll();
     }
 
-    // READ - po id (opcionalno korisno)
+    // READ - po id 
     public function getById($id) {
         $stmt = $this->connection->prepare("SELECT * FROM movie_categories WHERE id = :id");
         $stmt->bindParam(':id', $id);
@@ -35,7 +35,6 @@ class MovieCategoriesDao extends BaseDao {
     }
 
     // UPDATE
-    // Možeš proslijediti oba parametra ili samo jedno polje preko $data niza
     public function updateLink($id, $movie_id = null, $category_id = null) {
         $data = [];
         if ($movie_id !== null) {
@@ -45,7 +44,7 @@ class MovieCategoriesDao extends BaseDao {
             $data['category_id'] = $category_id;
         }
         if (empty($data)) {
-            return false; // nema polja za ažuriranje
+            return false; 
         }
         return $this->update($id, $data);
     }
