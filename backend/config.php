@@ -1,7 +1,7 @@
 <?php
 class Database {
     private static $host = 'localhost';
-    private static $dbName = 'movie_app';
+    private static $dbName = 'my-film-library';
     private static $username = 'root';
     private static $password = '';
     private static $connection = null;
