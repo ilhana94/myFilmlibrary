@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/BaseDao.php";
+namespace rest\dao;  
 
 class MovieCategoriesDao extends BaseDao {
     public function __construct() {

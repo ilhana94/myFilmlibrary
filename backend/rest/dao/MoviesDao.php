@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/BaseDao.php";
+namespace rest\dao;  
 
 class MoviesDao extends BaseDao {
     public function __construct() {
@@ -40,6 +40,7 @@ class MoviesDao extends BaseDao {
     public function deleteMovie($id) {
         return $this->delete($id);
     }
+
     public function getMoviesWithCategories() {
         $query = "
             SELECT m.*, c.name AS category_name
@@ -51,6 +52,5 @@ class MoviesDao extends BaseDao {
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    
 }
 ?>

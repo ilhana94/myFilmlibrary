@@ -1,4 +1,6 @@
 <?php
+namespace rest\dao;  
+
 require_once __DIR__ . "/BaseDao.php";
 
 class UsersDao extends BaseDao {
