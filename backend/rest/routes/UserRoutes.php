@@ -11,7 +11,7 @@ require_once __DIR__ . '/../services/UserServices.php';
  */
 Flight::route('GET /users', function() {
     try {
-        Flight::json((new UserServices())->getAll(), 200);
+        Flight::json((new \rest\services\UserServices())->getAll(), 200);  // 👈 Dodaj namespace
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 500);
     }
@@ -29,7 +29,7 @@ Flight::route('GET /users', function() {
  */
 Flight::route('GET /users/@id', function($id) {
     try {
-        $user = (new UserService())->getById($id);
+        $user = (new \rest\services\UserServices())->getById($id);  // 👈 Ispravi u "UserServices"
         if ($user) {
             Flight::json($user, 200);
         } else {
@@ -59,7 +59,7 @@ Flight::route('GET /users/@id', function($id) {
 Flight::route('POST /users', function() {
     try {
         $data = Flight::request()->data->getData();
-        Flight::json((new UserService())->create($data), 201);
+        Flight::json((new \rest\services\UserServices())->create($data), 201);  // 👈 Ispravi u "UserServices"
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 400);
     }
@@ -85,7 +85,7 @@ Flight::route('POST /users', function() {
 Flight::route('PUT /users/@id', function($id) {
     try {
         $data = Flight::request()->data->getData();
-        $updated = (new UserService())->update($id, $data);
+        $updated = (new \rest\services\UserServices())->update($id, $data);  // 👈 Ispravi u "UserServices"
         if ($updated) {
             Flight::json($updated, 200);
         } else {
@@ -108,7 +108,7 @@ Flight::route('PUT /users/@id', function($id) {
  */
 Flight::route('DELETE /users/@id', function($id) {
     try {
-        $deleted = (new UserService())->delete($id);
+        $deleted = (new \rest\services\UserServices())->delete($id);  // 👈 Ispravi u "UserServices"
         if ($deleted) {
             Flight::json(null, 204);
         } else {

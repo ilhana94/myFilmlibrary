@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/BaseDao.php";
+namespace rest\dao;  // 👈 DODAJ OVAJ NAMESPACE
 
 class MovieCategoriesDao extends BaseDao {
     public function __construct() {

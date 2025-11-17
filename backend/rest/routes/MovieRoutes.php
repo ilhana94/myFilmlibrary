@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../services/MoviesServices.php';
 
-
 /**
  * @OA\Get(
  *     path="/movies",
@@ -12,7 +11,7 @@ require_once __DIR__ . '/../services/MoviesServices.php';
  */
 Flight::route('GET /movies', function() {
     try {
-        Flight::json((new MoviesServices())->getAll(), 200);
+        Flight::json((new \rest\services\MoviesServices())->getAll(), 200);  // 👈 DODAJ NAMESPACE
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 500);
     }
@@ -30,7 +29,7 @@ Flight::route('GET /movies', function() {
  */
 Flight::route('GET /movies/@id', function($id) {
     try {
-        $movie = (new MoviesServices())->getById($id);
+        $movie = (new \rest\services\MoviesServices())->getById($id);  // 👈 DODAJ NAMESPACE
         if ($movie) {
             Flight::json($movie, 200);
         } else {
@@ -60,7 +59,7 @@ Flight::route('GET /movies/@id', function($id) {
 Flight::route('POST /movies', function() {
     try {
         $data = Flight::request()->data->getData();
-        Flight::json((new MoviesServices())->create($data), 201);
+        Flight::json((new \rest\services\MoviesServices())->create($data), 201);  // 👈 DODAJ NAMESPACE
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 400);
     }
@@ -86,7 +85,7 @@ Flight::route('POST /movies', function() {
 Flight::route('PUT /movies/@id', function($id) {
     try {
         $data = Flight::request()->data->getData();
-        $updated = (new MoviesServices())->update($id, $data);
+        $updated = (new \rest\services\MoviesServices())->update($id, $data);  // 👈 DODAJ NAMESPACE
         if ($updated) {
             Flight::json($updated, 200);
         } else {
@@ -109,7 +108,7 @@ Flight::route('PUT /movies/@id', function($id) {
  */
 Flight::route('DELETE /movies/@id', function($id) {
     try {
-        $deleted = (new MoviesServices())->delete($id);
+        $deleted = (new \rest\services\MoviesServices())->delete($id);  // 👈 DODAJ NAMESPACE
         if ($deleted) {
             Flight::json(null, 204);
         } else {

@@ -1,22 +1,17 @@
 <?php
 require_once __DIR__ . '/../services/MovieCategoriesServices.php';
 
-Flight::route('/movie_categories', function() {
-    $service = new MovieCategoriesServices();
-    Flight::json($service->getAll());
-});
-
-Flight::route('GET /movie_categories', function() {
+Flight::route('GET /movie-categories', function() {
     try {
-        Flight::json((new MovieCategoriesServices())->getAll(), 200);
+        Flight::json((new \rest\services\MovieCategoriesServices())->getAll(), 200);  // 👈 DODAJ NAMESPACE
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 500);
     }
 });
 
-Flight::route('GET /movie_categories/@id', function($id) {
+Flight::route('GET /movie-categories/@id', function($id) {
     try {
-        $link = (new MovieCategoriesServices())->getById($id);
+        $link = (new \rest\services\MovieCategoriesServices())->getById($id);  // 👈 DODAJ NAMESPACE
         if ($link) {
             Flight::json($link, 200);
         } else {
@@ -27,19 +22,19 @@ Flight::route('GET /movie_categories/@id', function($id) {
     }
 });
 
-Flight::route('POST /movie_categories', function() {
+Flight::route('POST /movie-categories', function() {
     try {
         $data = Flight::request()->data->getData();
-        Flight::json((new MovieCategoriesServices())->create($data), 201);
+        Flight::json((new \rest\services\MovieCategoriesServices())->create($data), 201);  // 👈 DODAJ NAMESPACE
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 400);
     }
 });
 
-Flight::route('PUT /movie_categories/@id', function($id) {
+Flight::route('PUT /movie-categories/@id', function($id) {
     try {
         $data = Flight::request()->data->getData();
-        $updated = (new MovieCategoriesServices())->update($id, $data);
+        $updated = (new \rest\services\MovieCategoriesServices())->update($id, $data);  // 👈 DODAJ NAMESPACE
         if ($updated) {
             Flight::json($updated, 200);
         } else {
@@ -50,9 +45,9 @@ Flight::route('PUT /movie_categories/@id', function($id) {
     }
 });
 
-Flight::route('DELETE /movie_categories/@id', function($id) {
+Flight::route('DELETE /movie-categories/@id', function($id) {
     try {
-        $deleted = (new MovieCategoriesServices())->delete($id);
+        $deleted = (new \rest\services\MovieCategoriesServices())->delete($id);  // 👈 DODAJ NAMESPACE
         if ($deleted) {
             Flight::json(null, 204);
         } else {

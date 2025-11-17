@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/BaseDao.php";
+namespace rest\dao;
 
 class ReviewsDao extends BaseDao {
     public function __construct() {
@@ -7,22 +7,23 @@ class ReviewsDao extends BaseDao {
     }
 
     // CREATE
-    public function createReview($movie_id, $rating, $comment) {
+    public function createReview($movie_id, $user_id, $rating, $comment) {  // 👈 DODAJ user_id
         return $this->insert([
             'movie_id' => $movie_id,
+            'user_id' => $user_id,  // 👈 DODAJ user_id
             'rating' => $rating,
             'comment' => $comment
         ]);
     }
 
-    // READ
+    // READ - specifične metode za reviews
     public function getReviewsByMovie($movie_id) {
         $stmt = $this->connection->prepare("
-            SELECT * FROM reviews WHERE movie_id = :movie_id
+            SELECT * FROM reviews WHERE movie_id = :movie_id ORDER BY id DESC
         ");
         $stmt->bindParam(':movie_id', $movie_id);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     // Jedna recenzija po ID-u
@@ -32,7 +33,7 @@ class ReviewsDao extends BaseDao {
         ");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     // Prosječna ocjena za film
@@ -44,7 +45,7 @@ class ReviewsDao extends BaseDao {
         ");
         $stmt->bindParam(':movie_id', $movie_id);
         $stmt->execute();
-        $result = $stmt->fetch();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $result ? $result['average_rating'] : null;
     }
 
@@ -52,7 +53,6 @@ class ReviewsDao extends BaseDao {
     public function updateReview($id, $data) {
         return $this->update($id, $data);
     }
-
 
     // DELETE
     public function deleteReview($id) {

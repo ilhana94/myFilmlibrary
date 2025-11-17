@@ -1,7 +1,7 @@
 <?php
 class Database {
     private static $host = 'localhost';
-    private static $dbName = 'my-film-library';
+    private static $dbName = 'movie_app';
     private static $username = 'root';
     private static $password = '';
     private static $connection = null;
@@ -18,7 +18,7 @@ class Database {
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                     ]
                 );
-                echo "Database connected successfully!";
+                // 👇 ECHO JE UKLONJEN - ovo je bilo pokvarilo JSON response
             } catch (PDOException $e) {
                 die("Connection failed: " . $e->getMessage());
             }

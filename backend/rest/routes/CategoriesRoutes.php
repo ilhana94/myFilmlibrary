@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../services/CategoriesService.php';
 
 // TEST RUTA - probaj ovu prvo
@@ -7,16 +6,6 @@ Flight::route('GET /categories/test', function() {
     echo "TEST RUTA RADI!";
     exit;
 });
-
-// Ostale rute...
-
-// TEST RUTA - probaj ovu prvo
-Flight::route('GET /categories/test', function() {
-    echo "TEST RUTA RADI!";
-    exit;
-});
-
-// Ostale rute...
 
 /**
  * @OA\Get(
@@ -30,7 +19,7 @@ Flight::route('GET /categories/test', function() {
  * )
  */
 Flight::route('GET /categories', function() {
-    Flight::json((new CategoriesService())->getAll());
+    Flight::json((new \rest\services\CategoriesService())->getAll());  // 👈 DODAJ NAMESPACE
 });
 
 /**
@@ -48,7 +37,7 @@ Flight::route('GET /categories', function() {
  * )
  */
 Flight::route('GET /categories/@id', function($id) {
-    Flight::json((new CategoriesService())->getById($id));
+    Flight::json((new \rest\services\CategoriesService())->getById($id));  // 👈 DODAJ NAMESPACE
 });
 
 /**
@@ -68,7 +57,7 @@ Flight::route('GET /categories/@id', function($id) {
  */
 Flight::route('POST /categories', function() {
     $data = Flight::request()->data->getData();
-    Flight::json((new CategoriesService())->create($data));
+    Flight::json((new \rest\services\CategoriesService())->create($data));  // 👈 DODAJ NAMESPACE
 });
 
 /**
@@ -90,12 +79,12 @@ Flight::route('POST /categories', function() {
  */
 Flight::route('PUT /categories/@id', function($id) {
     $data = Flight::request()->data->getData();
-    Flight::json((new CategoriesService())->update($id, $data));
+    Flight::json((new \rest\services\CategoriesService())->update($id, $data));  // 👈 DODAJ NAMESPACE
 });
 
 /**
  * @OA\Delete(
- *     path="/categories/{id}",
+ *     path="/categories/{id}", 
  *     tags={"categories"},
  *     summary="Delete category by ID",
  *     @OA\Parameter(
@@ -108,5 +97,5 @@ Flight::route('PUT /categories/@id', function($id) {
  * )
  */
 Flight::route('DELETE /categories/@id', function($id) {
-    Flight::json((new CategoriesService())->delete($id));
+    Flight::json((new \rest\services\CategoriesService())->delete($id));  // 👈 DODAJ NAMESPACE
 });
