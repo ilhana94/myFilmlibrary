@@ -1,5 +1,5 @@
 <?php
-namespace rest\dao;  // 👈 DODAJ OVAJ NAMESPACE
+namespace rest\dao;  
 
 class CategoriesDao extends BaseDao {
     public function __construct() {

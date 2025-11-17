@@ -6,12 +6,12 @@ class ReviewsServices extends BaseServices {
         parent::__construct(new \rest\dao\ReviewsDao());
     }
 
-    // 👇 DODAJTE OVU METODU
+    
     public function getAll() {
         return $this->dao->getAll();
     }
 
-    // 👇 DODAJTE I OVE METODE KOJE SE POZIVAJU IZ ROUTES
+    //METODE KOJE SE POZIVAJU IZ ROUTES
     public function getById($id) {
         return $this->dao->getReviewById($id);
     }
@@ -20,9 +20,9 @@ class ReviewsServices extends BaseServices {
         $this->validateData($data, 'create');
         return $this->dao->createReview(
             $data['movie_id'], 
-            $data['user_id'],  // 👈 DODAJ user_id
+            $data['user_id'],  
             $data['rating'], 
-            $data['comment'] ?? ''  // 👈 DODAJ default vrijednost za comment
+            $data['comment'] ?? ''  
         );
     }
 

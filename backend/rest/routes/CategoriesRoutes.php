@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../services/CategoriesService.php';
 
-// TEST RUTA - probaj ovu prvo
+// TEST RUTA 
 Flight::route('GET /categories/test', function() {
     echo "TEST RUTA RADI!";
     exit;
@@ -19,7 +19,7 @@ Flight::route('GET /categories/test', function() {
  * )
  */
 Flight::route('GET /categories', function() {
-    Flight::json((new \rest\services\CategoriesService())->getAll());  // 👈 DODAJ NAMESPACE
+    Flight::json((new \rest\services\CategoriesService())->getAll());  
 });
 
 /**
@@ -37,7 +37,7 @@ Flight::route('GET /categories', function() {
  * )
  */
 Flight::route('GET /categories/@id', function($id) {
-    Flight::json((new \rest\services\CategoriesService())->getById($id));  // 👈 DODAJ NAMESPACE
+    Flight::json((new \rest\services\CategoriesService())->getById($id));  
 });
 
 /**
@@ -57,7 +57,7 @@ Flight::route('GET /categories/@id', function($id) {
  */
 Flight::route('POST /categories', function() {
     $data = Flight::request()->data->getData();
-    Flight::json((new \rest\services\CategoriesService())->create($data));  // 👈 DODAJ NAMESPACE
+    Flight::json((new \rest\services\CategoriesService())->create($data));  
 });
 
 /**
@@ -79,7 +79,7 @@ Flight::route('POST /categories', function() {
  */
 Flight::route('PUT /categories/@id', function($id) {
     $data = Flight::request()->data->getData();
-    Flight::json((new \rest\services\CategoriesService())->update($id, $data));  // 👈 DODAJ NAMESPACE
+    Flight::json((new \rest\services\CategoriesService())->update($id, $data));  
 });
 
 /**
@@ -97,5 +97,5 @@ Flight::route('PUT /categories/@id', function($id) {
  * )
  */
 Flight::route('DELETE /categories/@id', function($id) {
-    Flight::json((new \rest\services\CategoriesService())->delete($id));  // 👈 DODAJ NAMESPACE
+    Flight::json((new \rest\services\CategoriesService())->delete($id));  
 });

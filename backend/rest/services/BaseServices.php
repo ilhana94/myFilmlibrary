@@ -41,7 +41,7 @@ class BaseServices {
 
     // Osnovna validacija, može se proširiti u child servisima
     protected function validateData($data, $action) {
-        if(!is_array($data) || count($data) === 0) {  // 👈 POPRAVLJENO - empty() zamijenjeno sa count() === 0
+        if(!is_array($data) || count($data) === 0) {  
             throw new \Exception("Data must be a non-empty array for $action");
         }
 

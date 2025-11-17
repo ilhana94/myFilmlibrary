@@ -2,7 +2,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/config.php';
 
-// PRVO učitaj sve klase, PAKET rute
+// sve klase, PAKET rute
 require_once __DIR__ . '/rest/dao/BaseDao.php';
 require_once __DIR__ . '/rest/services/BaseServices.php';
 
@@ -13,14 +13,14 @@ require_once __DIR__ . '/rest/dao/MoviesDao.php';
 require_once __DIR__ . '/rest/dao/ReviewsDao.php';
 require_once __DIR__ . '/rest/dao/MovieCategoriesDao.php';
 
-// Ostale Service
+// service
 require_once __DIR__ . '/rest/services/UserServices.php';
 require_once __DIR__ . '/rest/services/CategoriesService.php';
 require_once __DIR__ . '/rest/services/MoviesServices.php';
 require_once __DIR__ . '/rest/services/ReviewsServices.php';
 require_once __DIR__ . '/rest/services/MovieCategoriesServices.php';
 
-// TEK ONDA učitaj rute
+// ucitaj rute
 require_once __DIR__ . '/rest/routes/UserRoutes.php';
 require_once __DIR__ . '/rest/routes/CategoriesRoutes.php';
 require_once __DIR__ . '/rest/routes/MovieRoutes.php';

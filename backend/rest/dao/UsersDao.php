@@ -1,5 +1,5 @@
 <?php
-namespace rest\dao;  // 👈 DODAJ OVAJ NAMESPACE
+namespace rest\dao;  
 
 require_once __DIR__ . "/BaseDao.php";
 

@@ -18,7 +18,7 @@ class Database {
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                     ]
                 );
-                // 👇 ECHO JE UKLONJEN - ovo je bilo pokvarilo JSON response
+                
             } catch (PDOException $e) {
                 die("Connection failed: " . $e->getMessage());
             }

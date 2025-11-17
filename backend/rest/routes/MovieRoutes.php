@@ -11,7 +11,7 @@ require_once __DIR__ . '/../services/MoviesServices.php';
  */
 Flight::route('GET /movies', function() {
     try {
-        Flight::json((new \rest\services\MoviesServices())->getAll(), 200);  // 👈 DODAJ NAMESPACE
+        Flight::json((new \rest\services\MoviesServices())->getAll(), 200);  
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 500);
     }
@@ -29,7 +29,7 @@ Flight::route('GET /movies', function() {
  */
 Flight::route('GET /movies/@id', function($id) {
     try {
-        $movie = (new \rest\services\MoviesServices())->getById($id);  // 👈 DODAJ NAMESPACE
+        $movie = (new \rest\services\MoviesServices())->getById($id);  
         if ($movie) {
             Flight::json($movie, 200);
         } else {
@@ -59,7 +59,7 @@ Flight::route('GET /movies/@id', function($id) {
 Flight::route('POST /movies', function() {
     try {
         $data = Flight::request()->data->getData();
-        Flight::json((new \rest\services\MoviesServices())->create($data), 201);  // 👈 DODAJ NAMESPACE
+        Flight::json((new \rest\services\MoviesServices())->create($data), 201);  
     } catch (Exception $e) {
         Flight::json(['error' => $e->getMessage()], 400);
     }
@@ -85,7 +85,7 @@ Flight::route('POST /movies', function() {
 Flight::route('PUT /movies/@id', function($id) {
     try {
         $data = Flight::request()->data->getData();
-        $updated = (new \rest\services\MoviesServices())->update($id, $data);  // 👈 DODAJ NAMESPACE
+        $updated = (new \rest\services\MoviesServices())->update($id, $data);  
         if ($updated) {
             Flight::json($updated, 200);
         } else {
@@ -108,7 +108,7 @@ Flight::route('PUT /movies/@id', function($id) {
  */
 Flight::route('DELETE /movies/@id', function($id) {
     try {
-        $deleted = (new \rest\services\MoviesServices())->delete($id);  // 👈 DODAJ NAMESPACE
+        $deleted = (new \rest\services\MoviesServices())->delete($id);  
         if ($deleted) {
             Flight::json(null, 204);
         } else {

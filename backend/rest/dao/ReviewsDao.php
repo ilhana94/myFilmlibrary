@@ -7,10 +7,10 @@ class ReviewsDao extends BaseDao {
     }
 
     // CREATE
-    public function createReview($movie_id, $user_id, $rating, $comment) {  // 👈 DODAJ user_id
+    public function createReview($movie_id, $user_id, $rating, $comment) {  
         return $this->insert([
             'movie_id' => $movie_id,
-            'user_id' => $user_id,  // 👈 DODAJ user_id
+            'user_id' => $user_id,  
             'rating' => $rating,
             'comment' => $comment
         ]);

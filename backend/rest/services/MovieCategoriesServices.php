@@ -1,20 +1,20 @@
 <?php
-namespace rest\services;  // 👈 DODAJ OVAJ NAMESPACE
+namespace rest\services;  
 
-class MovieCategoriesServices extends BaseServices {  // 👈 Promijeni u "BaseServices" (s na kraju) i "MovieCategoriesServices" (s na kraju)
+class MovieCategoriesServices extends BaseServices {  
     public function __construct() {
-        parent::__construct(new \rest\dao\MovieCategoriesDao());  // 👈 Dodaj namespace
+        parent::__construct(new \rest\dao\MovieCategoriesDao());  
     }
 
     protected function validateData($data, $action) {
         parent::validateData($data, $action);
 
         if(!isset($data['movie_id']) || !is_numeric($data['movie_id']) || $data['movie_id'] <= 0) {
-            throw new \Exception("Valid movie_id is required");  // 👈 Dodaj backslash
+            throw new \Exception("Valid movie_id is required");  
         }
 
         if(!isset($data['category_id']) || !is_numeric($data['category_id']) || $data['category_id'] <= 0) {
-            throw new \Exception("Valid category_id is required");  // 👈 Dodaj backslash
+            throw new \Exception("Valid category_id is required");  
         }
 
         // Provjera duplikata (opcionalno)

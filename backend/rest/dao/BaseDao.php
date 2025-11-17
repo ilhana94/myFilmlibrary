@@ -17,7 +17,7 @@ class BaseDao {
            $stmt = $this->connection->prepare("SELECT * FROM " . $this->table);
            $stmt->execute();
            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-           return $result ? $result : []; // Vraća prazan array ako nema podataka
+           return $result ? $result : [];
        } catch (\PDOException $e) {
            throw new \Exception("Database error in getAll: " . $e->getMessage());
        }
@@ -29,7 +29,7 @@ class BaseDao {
            $stmt->bindParam(':id', $id);
            $stmt->execute();
            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-           return $result ? $result : null; // Vraća null ako nije pronađen
+           return $result ? $result : null;
        } catch (\PDOException $e) {
            throw new \Exception("Database error in getById: " . $e->getMessage());
        }
@@ -44,7 +44,7 @@ class BaseDao {
            $success = $stmt->execute($data);
            
            if ($success) {
-               return $this->connection->lastInsertId(); // Vraća ID insertovanog reda
+               return $this->connection->lastInsertId();
            }
            return false;
        } catch (\PDOException $e) {
