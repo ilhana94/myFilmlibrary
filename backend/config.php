@@ -1,29 +1,48 @@
 <?php
-class Database {
-    private static $host = 'localhost';
-    private static $dbName = 'movie_app';
-    private static $username = 'root';
-    private static $password = '';
-    private static $connection = null;
+// C:\xampp\htdocs\my-film-library\config.php
 
+// Database configuration
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'my_film_library');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+
+// JWT Secret key
+define('JWT_SECRET', 'your_super_secret_jwt_key_change_this_in_production');
+
+// Site URL
+define('BASE_URL', 'http://localhost/my-film-library');
+
+// Timezone
+date_default_timezone_set('Europe/Belgrade');
+
+// Error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Database class (ako ne postoji drugde)
+class Database {
     public static function connect() {
-        if (self::$connection === null) {
-            try {
-                self::$connection = new PDO(
-                    "mysql:host=" . self::$host . ";dbname=" . self::$dbName,
-                    self::$username,
-                    self::$password,
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                    ]
-                );
-                
-            } catch (PDOException $e) {
-                die("Connection failed: " . $e->getMessage());
-            }
+        try {
+            $conn = new PDO(
+                'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8',
+                DB_USER,
+                DB_PASS,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES => false
+                ]
+            );
+            return $conn;
+        } catch (PDOException $e) {
+            die("Database connection failed: " . $e->getMessage());
         }
-        return self::$connection;
     }
+}
+
+// Session start (za web login ako koristiš sesije)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 ?>
